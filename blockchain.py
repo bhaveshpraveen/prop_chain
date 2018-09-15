@@ -1,21 +1,7 @@
 from block import Block
 from transaction import Transaction
 
-def validate_argument_type(arg_type=None):
-    def inner(function):
-        def wrapper(self, *args, **kwargs):
-            for arg in args + tuple(kwargs.values()):
-                if not isinstance(arg, arg_type):
-                    raise TypeError(
-                        "Expected object of type {}." \
-                        "Received {}".format(
-                            type(arg_type).__name__, 
-                            type(arg).__name__)
-                    )
-            return function(self, *args, **kwargs)
-        return wrapper
-    return inner
-
+from utils import validate_argument_type
 
 class BlockChain(object):
     _blockchain = []
@@ -41,7 +27,9 @@ class BlockChain(object):
     def get_last_block(self):
         return self.blockchain[-1]
     
+    # this function is probably unneccesary
     def create_genesis_block(self):
+        """Creates the first block with dummy data."""
         block = Block(
             block_no=1,
             transactions=Transaction('James', 'Murray', 'Chinatown'),
