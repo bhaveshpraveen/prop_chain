@@ -6,6 +6,7 @@ from utils import (
     get_all_transactions_as_str,
     validate_argument_type,
     get_local_time,
+    get_sha256,
 )
 
 class Block(object):
@@ -24,11 +25,11 @@ class Block(object):
             self.previous_hash,
             self.get_transaction_str(),
             self.timestamp)
-        self.hash = sha256(block_info.encode()).hexdigest()
+        self.hash = get_sha256(block_info)
 
     
     @validate_argument_type(Transaction)
-    def append_transactions(self, transaction):
+    def append_transaction(self, transaction):
         self.transactions.append(transaction)
         
 
