@@ -31,7 +31,7 @@ class User(object):
     
 
 class Node(object):
-    __neighbours = []
+    _neighbours = []
     # neighbours contain the list of neighbouring users
 
     def __init__(self):

@@ -22,8 +22,6 @@ class BlockChain(object):
         """
         self.blockchain.append(block)
 
-    
-    
     def get_last_block(self):
         return self.blockchain[-1]
     
